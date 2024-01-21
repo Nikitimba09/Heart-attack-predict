@@ -1,21 +1,19 @@
-from tkinter import *
-from datetime import date
-from tkinter.ttk import Combobox
 import datetime
 import tkinter as tk
-from tkinter import ttk
-import os
+from datetime import date
+from tkinter import *
 from tkinter import messagebox
-
-import matplotlib
-from backend import *
-
-matplotlib.use("TkAgg")
+from tkinter.ttk import Combobox
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 from matplotlib.figure import Figure
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib
+
+from backend import *
+
+matplotlib.use("TkAgg")
+
 
 background = "#f0ddd5"
 framebg = "#62a7ff"
@@ -28,7 +26,7 @@ root.resizable(False, False)
 root.config(bg=background)
 
 
-###### ANALYSIS #########
+# ANALYSIS #########
 def analysis():
     name = Name.get()
     D1 = Date.get()
@@ -145,7 +143,7 @@ def analysis():
         report1.config(text=f'{name}, you have a heart disease')
 
 
-##info window (operated by info button)
+# info window (operated by info button)
 def Info():
     Icon_window = Toplevel(root)
     Icon_window.title("Info")
@@ -170,35 +168,35 @@ def Info():
           font="arial 11").place(x=20, y=190)
     Label(Icon_window, text="chol -  уровень холестерина в сыворотке крови в мг/дл", font="arial 11").place(x=20, y=220)
     Label(Icon_window, text="fbs - уровень сахара в крови натощак > 120 мг/дл (1 = верно; 0 = ложно)",
-          font="arial 11").place(x=20,y=250)
+          font="arial 11").place(x=20, y=250)
     Label(Icon_window, text="restecg - результаты электрокардиографии в состоянии покоя "
                             "(0 = в норме; "
                             "1 = наличие ST-T; "
-                            "2 = гипертрофия)",font="arial 11").place(x=20, y=280)
+                            "2 = гипертрофия)", font="arial 11").place(x=20, y=280)
     Label(Icon_window,
           text="thalach - максимальная частота сердечных сокращений, достигнутая при стенокардии, вызванной физической "
-          "нагрузкой (1 = да; 0 = нет)",
+               "нагрузкой (1 = да; 0 = нет)",
           font="arial 11").place(x=20, y=310)
     Label(Icon_window, text="exang - стенокардия, вызванная физической нагрузкой (1 = да; 0 = нет)",
           font="arial 11").place(x=20, y=340)
     Label(Icon_window, text="oldpeak - Депрессия ЭКГ, вызванная физической нагрузкой по сравнению с отдыхом",
-          font="arial 11").place(x=20,y=370)
+          font="arial 11").place(x=20, y=370)
     Label(Icon_window,
           text="slope - наклон пикового сегмента ЭКГ упражнения (0 = подъем; 1 = ровный; 2 = спуск)",
           font="arial 11").place(x=20, y=400)
     Label(Icon_window, text="ca - количество крупных сосудов (0-3), окрашенных при флуороскопии",
-          font="arial 11").place(x=20,y=430)
+          font="arial 11").place(x=20, y=430)
     Label(Icon_window, text="thal - Заболевание крови, называемое талассемией - 0 = норма; 1 = исправленный дефект; "
-                            "2 = обратимый дефект", font="arial 11").place(x=20,y=460)
+                            "2 = обратимый дефект", font="arial 11").place(x=20, y=460)
 
     Icon_window.mainloop()
 
 
 def Clear():
-    Name.get("")
-    DOB.get("")
-    trestbps.get("")
-    chol.get("")
+    Name.get()
+    DOB.get()
+    trestbps.get()
+    chol.get()
     thalach.set("")
     oldpeak.set("")
 
@@ -251,11 +249,11 @@ DOB = IntVar()
 dob_entry = Entry(Heading_entry, textvariable=DOB, width=20, font='arial 20', bg="#ededed", fg="#222222", bd=0)
 dob_entry.place(x=450, y=130)
 
-###################### BODY
+# BODY
 Detail_entry = Frame(root, width=490, height=260, bg="#dbe0e3")
 Detail_entry.place(x=30, y=450)
 
-## Radio Button
+# Radio Button
 Label(Detail_entry, text="Пол:", font="arial 13", bg=framebg, fg=framefg).place(x=10, y=10)
 Label(Detail_entry, text="fbs:", font="arial 13", bg=framebg, fg=framefg).place(x=180, y=10)
 Label(Detail_entry, text="exang:", font="arial 13", bg=framebg, fg=framefg).place(x=335, y=10)
@@ -306,7 +304,7 @@ R6 = Radiobutton(Detail_entry, text="No", variable=exang, value=2, command=selec
 R5.place(x=387, y=10)
 R6.place(x=430, y=10)
 
-## COMBOBOX
+# COMBOBOX
 
 Label(Detail_entry, text='cp:', font='arial 13', bg=framebg, fg=framefg).place(x=10, y=50)
 Label(Detail_entry, text='restecg:', font='arial 13', bg=framebg, fg=framefg).place(x=10, y=90)
@@ -351,7 +349,7 @@ slope_combobox.place(x=70, y=130)
 ca_combobox.place(x=50, y=170)
 thal_combobox.place(x=50, y=210)
 
-###### DATA ENTRY box 2 columns
+# DATA ENTRY box 2 columns
 
 Label(Detail_entry, text="Smoking:", font='arial 13', width=7, bg=framebg, fg=framefg).place(x=240, y=50)
 Label(Detail_entry, text="trestbps:", font='arial 13', width=7, bg=framebg, fg=framefg).place(x=240, y=90)
@@ -374,10 +372,10 @@ chol_entry.place(x=320, y=130)
 thalach_entry.place(x=320, y=170)
 oldpeak_entry.place(x=320, y=210)
 
-#### END ENTRY #####
+# END ENTRY #####
 
 
-### REPORT IMAGE ###
+# REPORT IMAGE ###
 
 square_report_image = PhotoImage(file="Images/Report.png")
 report_background = Label(image=square_report_image, bg=background)
@@ -389,26 +387,26 @@ report.place(x=1170, y=550)
 report1 = Label(root, font="arial 10 bold", bg='white')
 report1.place(x=1130, y=610)
 
-### GRAPHIC IMAGE ###
+# GRAPHIC IMAGE ###
 graph_image = PhotoImage(file="Images/graph.png")
 Label(image=graph_image).place(x=600, y=270)
 Label(image=graph_image).place(x=860, y=270)
 Label(image=graph_image).place(x=600, y=500)
 Label(image=graph_image).place(x=860, y=500)
 
-### Button  ###
+# Button  ###
 analysis_button = PhotoImage(file="Images/Analysis.png")
 Button(root, image=analysis_button, bd=0, bg=background, cursor='hand2', command=analysis).place(x=1130, y=240)
 
-### INFO Button  ###
+# INFO Button  ###
 info_button = PhotoImage(file="Images/info.png")
 Button(root, image=info_button, bd=0, bg=background, cursor='hand2', command=Info).place(x=10, y=240)
 
-### SAVE Button  ###
+# SAVE Button  ###
 save_button = PhotoImage(file="Images/save.png")
 Button(root, image=save_button, bd=0, bg=background, cursor='hand2').place(x=1370, y=250)
 
-### Smoking and Non Smoking Button  ###
+# Smoking and Non Smoking Button  ###
 button_mode = True
 choice = 'smoking'
 
@@ -435,7 +433,7 @@ non_smoking_icon = PhotoImage(file="Images/non-smoker.png")
 mode = Button(root, image=smoking_icon, bg='#dbe0e3', bd=0, cursor='hand2', command=changemode)
 mode.place(x=350, y=495)
 
-### LogOut Button  ###
+# LogOut Button  ###
 
 logout_icon = PhotoImage(file="Images/logout.png")
 logout_button = Button(root, image=logout_icon, bg="#df2d4b", cursor="hand2", bd=0, command=exit)
